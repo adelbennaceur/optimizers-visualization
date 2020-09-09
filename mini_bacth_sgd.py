@@ -1,3 +1,0 @@
-"""
-parallesim and computational efficiency
-"""
