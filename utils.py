@@ -49,7 +49,7 @@ def save_anim(epoch, x_hist, y_hist, z_hist):
 
         Z = function(X, Y)
         ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap="jet", alpha=0.7)
-        ax.set_title("Gradient descent")
+
         ax.plot(
             x_hist[0:i],
             y_hist[0:i],
@@ -59,6 +59,8 @@ def save_anim(epoch, x_hist, y_hist, z_hist):
             alpha=0.4,
             label="Gradient descent",
         )
+        leg = plt.legend(loc='best', ncol=1)
+
         im_name = "./figures/" + str(i) + ".png"
         plt.savefig(im_name)
         plt.close()
