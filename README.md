@@ -4,11 +4,11 @@
 
 The goal is to minize the following function using gradeint descent based optimization algorithms. 
 
-the function has global minima at (-2 , 2) Initial values are x = 1 ,  y = 2.
+Initial values are x = 1 ,  y = 2.
 
-![](https://github.com/adelbennaceur/optimizers-visualization/figures/function.png)
+![](https://github.com/adelbennaceur/optimizers-visualization/tree/master/figures/function.PNG)
 #### Gradient descent(learning_rate=0.02):
-![](https://github.com/adelbennaceur/optimizers-visualization/figures/anim.gif)
+![](https://github.com/adelbennaceur/optimizers-visualization/tree/master/figures/anim.gif)
 
 #### Demo 
 install requirements : numpy , matplotlib
