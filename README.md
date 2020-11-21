@@ -21,5 +21,5 @@ $ python make_gif.py
 ```
 
 #### References
-[An overview of gradient descent optimization algorithms](http://ruder.io/optimizing-gradient-descent/)
-[Three-Dimensional Plotting in Matplotlib](https://jakevdp.github.io/PythonDataScienceHandbook/04.12-three-dimensional-plotting.html)
+[An overview of gradient descent optimization algorithms](http://ruder.io/optimizing-gradient-descent/).
+[Three-Dimensional Plotting in Matplotlib](https://jakevdp.github.io/PythonDataScienceHandbook/04.12-three-dimensional-plotting.html).
