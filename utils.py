@@ -38,7 +38,7 @@ def plot_function():
     plt.show()
 
 
-def save_anim(epoch, x_hist, y_hist, z_hist):
+def save_anim(epoch, x_hist, y_hist, z_hist,optim):
 
     for i in range(epoch):
         ax = plt.axes(projection="3d")
@@ -57,7 +57,7 @@ def save_anim(epoch, x_hist, y_hist, z_hist):
             marker="*",
             color="r",
             alpha=0.4,
-            label="Gradient descent",
+            label=optim,
         )
         leg = plt.legend(loc='best', ncol=1)
 

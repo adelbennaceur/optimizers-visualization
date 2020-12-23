@@ -4,10 +4,6 @@ from utils import function, grad_func
 
 
 class GradientDescent(object):
-    """
-    class implementation of gradient descent algorithm.
-    """
-
     def __init__(self, x, y, params):
         # initiale values
         assert x <= 1.5 and x >= -3, "x values mus be in range [-1,1]"
@@ -34,8 +30,6 @@ class GradientDescent(object):
 
 
 class Momentum(object):
-    """class implmentation of gradient descent with momentum optmization algorithm"""
-
     def __init__(self, x, y, params):
         assert x <= 1.5 and x >= -3, "x values mus be in range [-1,1]"
 
@@ -71,8 +65,6 @@ class Momentum(object):
 
 
 class Adagrad(object):
-    """class implmentation of adagrad optmization algorithm"""
-
     def __init__(self, x, y, params):
         self.x = x
         self.y = y
@@ -109,9 +101,9 @@ class Adagrad(object):
 
 
 class Rmsprop(object):
-    """class implmentation of rmsprop optmization algorithm"""
-
     def __init__(self, x, y, params):
+        assert x <= 1.5 and x >= -3, "x values mus be in range [-1,1]"
+
         self.x = x
         self.y = y
 
@@ -151,7 +143,55 @@ class Rmsprop(object):
 
 class Adam(object):
     def __init__(self, x, y, params):
-        raise NotImplementedError
+        self.x, self.y = x, y
 
-    def minmize(self):
-        raise NotImplementedError
+        self.lr, self.beta1, self.beta2, self.eps = (
+            params["lr"],
+            params["beta1"],
+            params["beta2"],
+            params["eps"],
+        )
+        self.grad_first_x, self.grad_first_y, self.grad_second_x, self.grad_second_y = (
+            0,
+            0,
+            0,
+            0,
+        )
+
+        self.x_hist = [x]
+        self.y_hist = [y]
+        self.z_hist = [function(x, y)]
+
+    def minimize(self, step):
+        grad_x, grad_y = grad_func(self.x, self.y)
+
+        self.grad_first_x = self.beta1 * self.grad_first_x + (1.0 - self.beta1) * grad_x
+        self.grad_first_y = self.beta1 * self.grad_first_y + (1.0 - self.beta1) * grad_y
+
+        self.grad_second_y = (
+            self.beta2 * self.grad_second_y + (1.0 - self.beta2) * grad_y ** 2
+        )
+        self.grad_second_x = (
+            self.beta2 * self.grad_second_x + (1.0 - self.beta2) * grad_x ** 2
+        )
+
+        # Bias correction
+        self.grad_first_x_unbiased = self.grad_first_x / (1.0 - self.beta1 ** step)
+        self.grad_first_y_unbiased = self.grad_first_y / (1.0 - self.beta1 ** step)
+
+        self.grad_second_x_unbiased = self.grad_second_x / (1.0 - self.beta2 ** step)
+        self.grad_second_y_unbiased = self.grad_second_y / (1.0 - self.beta2 ** step)
+        
+        # WEIGHT UPDATE
+        self.x = self.x - self.x * self.grad_first_x_unbiased / (
+            np.sqrt(self.grad_second_x_unbiased) + self.eps
+        )
+        self.y = self.y - self.y * self.grad_first_y_unbiased / (
+            np.sqrt(self.grad_second_y_unbiased) + self.eps
+        )
+       
+        #for visualization purposes
+        z = function(self.x, self.y)
+        self.x_hist.append(self.x)
+        self.y_hist.append(self.y)
+        self.z_hist.append(z)

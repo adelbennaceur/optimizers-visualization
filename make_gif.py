@@ -1,17 +1,13 @@
-import torch
-from torch.optim import Adam, SGD
-
-
 from utils import save_anim, make_gif
-from optimizers import GradientDescent
+from optimizers import GradientDescent , Adam
 
 parameters = {
-    "gd": {"lr": 0.02},
-    "momentum": {"lr": 0.01, "gamma": 0.09},
-    "adagrad": {"lr": 0.01, "eps": 1e-7},
-    "adadelta": {"lr": 0.01, "mu": 0.95, "eps": 1e-05, "decay": 0},
-    "rmsprop": {"lr": 0.01, "eps": 1e-6, "gamma": 0.09},
-    "n_epochs": 75,
+    "SGD": {"lr": 0.02},
+    "Momentum": {"lr": 0.01, "gamma": 0.09},
+    "Adagrad": {"lr": 0.01, "eps": 1e-7},
+    "Adam": {"lr": 0.01, "beta1": 0.95, "beta2": 0.99, "eps":1e-6},
+    "Rmsprop": {"lr": 0.01, "eps": 1e-6, "gamma": 0.09},
+    "n_epochs": 200,
 }
 
 
@@ -19,13 +15,13 @@ def main():
     # initial values
     x, y = 1, 2
 
-    gd = GradientDescent(x, y, parameters["gd"])
-
-    for _ in range(parameters["n_epochs"]):
-        # test queues and multiprocessing
-        gd.minimize()
+    gd = GradientDescent(x, y, parameters["SGD"])
+    adam = Adam(x,y,parameters["Adam"])
+    
+    for step in range(0,parameters["n_epochs"]):
+        adam.minimize(step+1)
     # save animation
-    save_anim(parameters["n_epochs"], gd.x_hist, gd.y_hist, gd.z_hist)
+    save_anim(parameters["n_epochs"], adam.x_hist, adam.y_hist, adam.z_hist, "Adam")
     make_gif(parameters["n_epochs"])
 
 
