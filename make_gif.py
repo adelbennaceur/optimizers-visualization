@@ -5,7 +5,7 @@ parameters = {
     "SGD": {"lr": 0.02},
     "Momentum": {"lr": 0.01, "gamma": 0.09},
     "Adagrad": {"lr": 0.01, "eps": 1e-7},
-    "Adam": {"lr": 0.01, "beta1": 0.95, "beta2": 0.99, "eps":1e-6},
+    "Adam": {"lr": 0.1, "beta1": 0.8, "beta2": 0.9, "eps":1e-3},
     "Rmsprop": {"lr": 0.01, "eps": 1e-6, "gamma": 0.09},
     "n_epochs": 200,
 }

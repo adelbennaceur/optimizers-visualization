@@ -75,7 +75,7 @@ def make_gif(epoch):
             "./figures/anim.gif",
             save_all=True,
             append_images=images[1:],
-            duration=100,
+            duration=epoch,
             loop=0,
         )
 
