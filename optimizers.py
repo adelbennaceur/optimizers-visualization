@@ -127,8 +127,8 @@ class Rmsprop(object):
         self.s_x += self.gamma * self.s_x + (1 - self.gamma) * self.grad_sqr_x
         self.s_y += self.gamma * self.s_y + (1 - self.gamma) * self.grad_sqr_y
 
-        new_grad_x = self.lr * (1 / np.sqrt(self.eps + self.s_y)) * grad_x
-        new_grad_y = self.lr * (1 / np.sqrt(self.eps + self.s_y)) * grad_y
+        new_grad_x = self.lr * (1 / np.sqrt(self.s_y)+self.eps) * grad_x
+        new_grad_y = self.lr * (1 / np.sqrt(self.s_y)+self.eps) * grad_y
 
         self.x = self.x - new_grad_x
         self.y = self.y - new_grad_y
