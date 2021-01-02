@@ -6,9 +6,12 @@ The goal is to minize the following function using gradeint descent based optimi
 
 Initial values are x = 1 ,  y = 2.
 
-![](https://github.com/adelbennaceur/optimizers-visualization/figures/function.PNG?raw=true)
-#### Gradient descent(learning_rate=0.02):
-![](https://github.com/adelbennaceur/optimizers-visualization/figures/anim.gif?raw=true)
+### Function 
+<p align="center"><img src="./figures/function.PNG" /></p>
+
+
+### Results
+<p align="center"><img src="./figures/anim.gif" /></p>
 
 #### Demo 
 install requirements : numpy , matplotlib
