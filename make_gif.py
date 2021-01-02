@@ -7,7 +7,7 @@ parameters = {
     "Adagrad": {"lr": 0.01, "eps": 1e-7},
     "Adam": {"lr": 0.1, "beta1": 0.8, "beta2": 0.9, "eps":1e-3},
     "Rmsprop": {"lr": 0.01, "eps": 1e-6, "gamma": 0.09},
-    "n_epochs": 200,
+    "n_epochs": 100,
 }
 
 
@@ -16,12 +16,12 @@ def main():
     x, y = 1, 2
 
     gd = GradientDescent(x, y, parameters["SGD"])
-    adam = Adam(x,y,parameters["Adam"])
+    
     
     for step in range(0,parameters["n_epochs"]):
-        adam.minimize(step+1)
+        gd.minimize()
     # save animation
-    save_anim(parameters["n_epochs"], adam.x_hist, adam.y_hist, adam.z_hist, "Adam")
+    save_anim(parameters["n_epochs"], gd.x_hist, gd.y_hist, gd.z_hist, "SGD")
     make_gif(parameters["n_epochs"])
 
 
