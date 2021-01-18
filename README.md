@@ -2,7 +2,7 @@
 
 #### Implementation and Visualization of different gradient descent based optimizers.
 
-The goal is to minize the following function using gradeint descent based optimization algorithms. 
+The goal is to minimize the following function using gradient descent based optimization algorithms. 
 
 Initial values are x = 1 ,  y = 2.
 
